@@ -164,8 +164,8 @@ class Feed_Model extends \WPLib_Model_Base {
                 break;
             }
 
-            if ( isset( $this->_response->{$method_name} ) ) {
-                $value = $this->_response->{$method_name};
+            if ( isset( $this->response()->{$method_name} ) ) {
+                $value = $this->response()->{$method_name};
                 break;
             }
 
