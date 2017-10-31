@@ -1,0 +1,31 @@
+{
+  "name": "clubdeuce/wplib-olm-juicer",
+  "type": "library",
+  "description": "Juicer component for WPLib.",
+  "keywords": [ "wordpress", "php", "library", "wplib", "modules", "juicer" ],
+  "homepage": "http://github.com/clubdeuce/wplib-olm-juicer",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Daryl Lozupone",
+      "email": "daryl@newclarity.net",
+      "role" :  "DevOp and Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.6.2",
+    "mockery/mockery": "0.9.5",
+    "wplib/wplib": "0.13.2"
+  },
+  "autoload": {
+    "psr-0": { "Clubdeuce\\WPLib\\Components\\": "includes/" }
+  },
+  "support": {
+    "issues": "https://github.com/clubdeuce/wplib-olm-juicer/issues",
+    "source":"https://github.com/clubdeuce/wplib-olm-juicer",
+    "docs": "https://github.com/clubdeuce/wplib-olm-juicer/wiki"
+  }
+}
