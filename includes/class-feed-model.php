@@ -45,7 +45,6 @@ namespace Clubdeuce\WPLib\Components\Juicer;
  * @method string        custom_css()
  * @method \stdClass     colors()
  * @method array         social_accounts()
- * @method object        response()
  */
 class Feed_Model extends \WPLib_Model_Base {
 
@@ -72,11 +71,11 @@ class Feed_Model extends \WPLib_Model_Base {
         $has = false;
 
         do {
-            if ( empty( $this->response() ) ) {
+            if ( empty( $this->_response() ) ) {
                 break;
             }
 
-            if ( is_wp_error( $response = $this->response() ) ) {
+            if ( is_wp_error( $response = $this->_response() ) ) {
                 break;
             }
 
@@ -105,7 +104,7 @@ class Feed_Model extends \WPLib_Model_Base {
                 break;
             }
 
-            foreach ( $this->response()->posts->items as $post ) {
+            foreach ($this->_response()->posts->items as $post ) {
                 $this->_posts[] = new Post( array( 'post' => $post ) );
             }
 
@@ -132,7 +131,7 @@ class Feed_Model extends \WPLib_Model_Base {
                 break;
             }
 
-            if ( empty( $this->response() ) ) {
+            if ( empty( $this->_response() ) ) {
                 break;
             }
 
@@ -157,15 +156,8 @@ class Feed_Model extends \WPLib_Model_Base {
 
         do {
 
-            $property = "_${method_name}";
-
-            if ( property_exists( __CLASS__, $property ) ) {
-                $value = $this->{$property};
-                break;
-            }
-
-            if ( isset( $this->response()->{$method_name} ) ) {
-                $value = $this->response()->{$method_name};
+            if ( isset( $this->_response()->{$method_name} ) ) {
+                $value = $this->_response()->{$method_name};
                 break;
             }
 
@@ -183,6 +175,15 @@ class Feed_Model extends \WPLib_Model_Base {
     function __get( $property ) {
 
         return '';
+
+    }
+
+    /**
+     * @return \stdClass
+     */
+    protected function _response() {
+
+        return $this->_response;
 
     }
 
