@@ -40,7 +40,7 @@ class Source_Model extends \WPLib_Model_Base {
                 $value = $this->source_object()->{$method_name};
                 break;
             }
-            
+
             $value = null;
         } while ( false );
 

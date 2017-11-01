@@ -106,6 +106,11 @@ class Post_Model extends \WPLib_Model_Base {
 
     }
 
+    /**
+     * @param  string $method_name
+     * @param  array $args
+     * @return mixed|null
+     */
     function __call( $method_name, $args ) {
 
         $value = null;

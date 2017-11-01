@@ -176,6 +176,10 @@ class Feed_Model extends \WPLib_Model_Base {
 
     }
 
+    /**
+     * @param  string $property
+     * @return string
+     */
     function __get( $property ) {
 
         return '';

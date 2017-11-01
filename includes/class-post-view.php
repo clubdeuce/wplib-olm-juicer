@@ -7,17 +7,23 @@ namespace Clubdeuce\WPLib\Components\Juicer;
  *
  * @property Post $item
  * @method   Post item()
+ * @method   Post_Model model()
  */
 class Post_View extends \WPLib_View_Base {
 
-    function the_image_url($maxw = null, $maxh = null, $crop = false ) {
+    /**
+     * @param int  $maxw
+     * @param int  $maxh
+     * @param bool $crop
+     */
+    function the_image_url( $maxw = null, $maxh = null, $crop = false ) {
 
         $url = '';
 
         do {
 
             // Is this a valid URL?
-            if ( ! wp_http_validate_url( esc_url( $this->item()->image() ) ) ) {
+            if ( ! wp_http_validate_url( esc_url( $this->model()->image() ) ) ) {
                 break;
             }
 
@@ -65,7 +71,7 @@ class Post_View extends \WPLib_View_Base {
             // store it temporarily
             $tmpfile = sprintf( '/tmp/%1$s', md5( $url ) );
 
-            if ( ! $foo = file_put_contents( $tmpfile, wp_remote_retrieve_body( $response ) ) ) {
+            if ( ! file_put_contents( $tmpfile, wp_remote_retrieve_body( $response ) ) ) {
                 break;
             }
 
@@ -104,6 +110,9 @@ class Post_View extends \WPLib_View_Base {
 
     }
 
+    /**
+     * @param string $format
+     */
     function the_timestamp( $format = 'M d, Y' ) {
 
         echo date( $format, strtotime( $this->item()->timestamp() ) );
