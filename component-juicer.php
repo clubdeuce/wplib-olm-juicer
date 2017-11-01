@@ -93,11 +93,9 @@ class Juicer extends \WPLib_Module_Base {
 
     /**
      * @param  $url
-     * @return \WP_Error|\stdClass|null
+     * @return \stdClass|\WP_Error
      */
     protected static function _make_request( $url ) {
-
-        $response = null;
 
         do {
             if ( ! wp_http_validate_url( $url ) ) {
