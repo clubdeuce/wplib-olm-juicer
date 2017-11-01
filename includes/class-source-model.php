@@ -33,6 +33,7 @@ class Source_Model extends \WPLib_Model_Base {
 
             if ( isset( $maybe ) ) {
                 $value = $maybe;
+                break;
             }
 
             $value = null;
