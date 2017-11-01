@@ -57,13 +57,14 @@ class Post_View extends \WPLib_View_Base {
                 break;
             }
 
-            // Can we download the file?
-            if ( is_wp_error( $response = wp_remote_get( $url ) ) ){
+            $response = wp_remote_get( $url );
+
+            if ( $response instanceof \WP_Error){
                 break;
             }
 
             // Was the download successful?
-            if ( ! 200 === wp_remote_retrieve_response_code( $response ) ) {
+            if ( ! ( 200 === wp_remote_retrieve_response_code( $response ) ) ) {
                 break;
             }
 
@@ -74,28 +75,37 @@ class Post_View extends \WPLib_View_Base {
                 break;
             }
 
+            // Get an image editor object
+            $editor = wp_get_image_editor( $tmpfile );
+
             // can we edit this image file?
-            if ( is_wp_error( $editor = wp_get_image_editor( $tmpfile ) ) ) {
+            if (  $editor instanceof \WP_Error) {
                 break;
             }
 
             // then resize to the dimensions specified
-            if ( ! $editor->resize( $maxw, $maxh, $crop ) ) {
+            $result = $editor->resize( $maxw, $maxh, $crop );
+
+
+            if ( ! $result || $result instanceof \WP_Error ) {
                 break;
             }
 
-            // and then save it
+            // make sure we have a cache directory
             if ( ! is_dir( WP_CONTENT_DIR . '/uploads/juicer/cache/' ) ) {
                 if ( ! mkdir( WP_CONTENT_DIR . '/uploads/juicer/cache/', 0775, true  ) ) {
                     break;
                 }
             }
 
-            if ( ! is_wp_error( $result = $editor->save( $path ) ) ) {
+            // and then save the modified image
+            $result = $editor->save( $path );
 
-                $url = WP_CONTENT_URL . '/uploads/juicer/cache/' . $result['file'];
-
+            if ( $result instanceof \WP_Error) {
+                break;
             }
+
+            $url = WP_CONTENT_URL . '/uploads/juicer/cache/' . $result['file'];
 
         } while ( false );
 
