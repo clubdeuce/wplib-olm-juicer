@@ -59,23 +59,13 @@ class Post_Model extends \WPLib_Model_Base {
     }
 
     /**
+     * An alias for the external_created_at property
+     *
      * @return string
      */
     function timestamp() {
 
-        $timestamp = '';
-
-        do {
-            if ( ! $this->has_post() ) {
-                break;
-            }
-
-            if ( isset( $this->_post->external_created_at ) ) {
-                $timestamp = $this->_post->external_created_at;
-            }
-        } while ( false );
-
-        return $timestamp;
+        return $this->external_created_at();
 
     }
 
@@ -87,9 +77,6 @@ class Post_Model extends \WPLib_Model_Base {
         $source = '';
 
         do {
-            if ( ! $this->has_post() ) {
-                break;
-            }
 
             if ( ! isset( $this->_post->source ) ) {
                 break;
