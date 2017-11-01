@@ -1,4 +1,6 @@
 # WPLib Juicer Module
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/clubdeuce/wplib-olm-juicer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/clubdeuce/wplib-olm-juicer/?branch=master)
+
 
 This is a [WPLib](https://github.com/wplib/wplib) module for [Juicer](https://juicer.io), a social media aggregation service.
 
