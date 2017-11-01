@@ -101,7 +101,7 @@ class Juicer extends \WPLib_Module_Base {
 
         do {
             if ( ! wp_http_validate_url( $url ) ) {
-                $response = new \WP_Error( '100', _( 'Invalid URL', 'cdjuicer' ), array( 'url' => $url ) );
+                $response = new \WP_Error( '100', __( 'Invalid URL', 'cdjuicer' ), array( 'url' => $url ) );
                 break;
             }
 
