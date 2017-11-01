@@ -45,14 +45,14 @@ class Juicer extends \WPLib_Module_Base {
                 break;
             }
 
-            if ( is_wp_error( $response ) ) {
-                self::trigger_error(
-                    sprintf(
-                        'Juicer error requesting %1$s: %2$s',
-                        $api_url,
-                        $response->get_error_message()
-                    )
-                );
+            if ( is_a( $response, '\WP_Error' ) ) {
+                trigger_error( sprintf(
+                    'Juicer error requesting %1$s: %3$s %2$s',
+                    $api_url,
+                    $response->get_error_message(),
+                    $response->get_error_code()
+                ), E_USER_WARNING );
+                $response = array();
             }
 
             $class = self::INSTANCE_CLASS;
@@ -110,7 +110,7 @@ class Juicer extends \WPLib_Module_Base {
 
             $fetch = wp_remote_get( $url );
 
-            if ( is_wp_error( $fetch ) ) {
+            if ( is_a( $fetch, '\WP_Error' ) ) {
                 $response = $fetch;
                 break;
             }
