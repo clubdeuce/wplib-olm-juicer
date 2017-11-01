@@ -70,11 +70,11 @@ class Post_Model extends \WPLib_Model_Base {
     }
 
     /**
-     * @return string
+     * @return Source
      */
     function source() {
 
-        $source = '';
+        $source = new Source();
 
         do {
 
@@ -86,7 +86,7 @@ class Post_Model extends \WPLib_Model_Base {
                 break;
             }
 
-            $source = $this->_post->source->source;
+            $source = new Source( array( 'source_object' => $this->_post->source ) );
         } while ( false );
 
         return $source;
