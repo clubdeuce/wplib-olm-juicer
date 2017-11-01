@@ -115,9 +115,7 @@ class Juicer extends \WPLib_Module_Base {
                 break;
             }
 
-            $code = intval( wp_remote_retrieve_response_code( $fetch ) );
-
-            if ( ! 200 === $code ) {
+            if ( ! ( 200 === wp_remote_retrieve_response_code( $fetch ) ) ) {
                 $response = new \WP_Error(
                     wp_remote_retrieve_response_code( $fetch ),
                     __( 'Unsuccessful request', 'cdjuicer' ),
