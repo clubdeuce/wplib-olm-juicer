@@ -5,8 +5,7 @@ namespace Clubdeuce\WPLib\Components\Juicer;
  * Class Post_View
  * @package Clubdeuce\WPLib\Components\Juicer
  *
- * @property Post $item
- * @method   Post item()
+ * @property Post_Model $model
  * @method   Post_Model model()
  */
 class Post_View extends \WPLib_View_Base {
@@ -27,7 +26,7 @@ class Post_View extends \WPLib_View_Base {
                 break;
             }
 
-            $url = $this->item()->image();
+            $url = $this->model()->image();
 
             // Do we need to resize it?
             if ( is_null( $maxh ) && is_null( $maxw ) ) {
@@ -106,7 +105,7 @@ class Post_View extends \WPLib_View_Base {
 
     function the_message() {
 
-        echo wp_kses_post( $this->item()->message() );
+        echo wp_kses_post( $this->model()->message() );
 
     }
 
@@ -115,7 +114,7 @@ class Post_View extends \WPLib_View_Base {
      */
     function the_timestamp( $format = 'M d, Y' ) {
 
-        echo date( $format, strtotime( $this->item()->timestamp() ) );
+        echo date( $format, strtotime( $this->model()->timestamp() ) );
 
     }
 
