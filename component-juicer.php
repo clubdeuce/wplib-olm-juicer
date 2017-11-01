@@ -45,7 +45,7 @@ class Juicer extends \WPLib_Module_Base {
                 break;
             }
 
-            if ( is_a( $response, '\WP_Error' ) ) {
+            if ( $response instanceof \WP_Error ) {
                 trigger_error( sprintf(
                     'Juicer error requesting %1$s: %3$s %2$s',
                     $api_url,
@@ -124,9 +124,11 @@ class Juicer extends \WPLib_Module_Base {
                 break;
             }
 
-            $response = json_decode( wp_remote_retrieve_body( $fetch ) );
+            $response = wp_remote_retrieve_body( $fetch );
 
             wp_cache_set( $cache_key, $response, 'juicer', 600 );
+
+            $response = json_decode( $response );
         } while ( false );
 
         return $response;
