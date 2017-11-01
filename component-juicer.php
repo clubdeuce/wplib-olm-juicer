@@ -110,7 +110,7 @@ class Juicer extends \WPLib_Module_Base {
 
             $fetch = wp_remote_get( $url );
 
-            if ( is_a( $fetch, '\WP_Error' ) ) {
+            if ( $fetch instanceof \WP_Error ) {
                 $response = $fetch;
                 break;
             }
