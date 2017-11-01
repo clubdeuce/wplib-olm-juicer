@@ -156,8 +156,10 @@ class Feed_Model extends \WPLib_Model_Base {
 
         do {
 
-            if ( isset( $this->_response()->{$method_name} ) ) {
-                $value = $this->_response()->{$method_name};
+            $maybe = $this->_response()->{$method_name};
+
+            if ( isset( $maybe ) ) {
+                $value = $maybe;
                 break;
             }
 

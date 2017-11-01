@@ -29,16 +29,10 @@ class Source_Model extends \WPLib_Model_Base {
 
         do {
 
-            $property = "_{$method_name}";
+            $maybe = $this->_source_object()->{$method_name};
 
-            if ( property_exists( __CLASS__, $method_name ) ) {
-                $value = $this->{$property};
-                break;
-            }
-
-            if ( isset( $this->source_object()->{$method_name} ) ) {
-                $value = $this->source_object()->{$method_name};
-                break;
+            if ( isset( $maybe ) ) {
+                $value = $maybe;
             }
 
             $value = null;
@@ -51,7 +45,7 @@ class Source_Model extends \WPLib_Model_Base {
     /**
      * @return \stdClass
      */
-    protected function source_object() {
+    protected function _source_object() {
 
         return $this->_source_object;
 
