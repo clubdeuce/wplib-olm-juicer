@@ -50,7 +50,7 @@ class Juicer extends \WPLib_Module_Base {
                     sprintf(
                         'Juicer error requesting %1$s: %2$s',
                         $api_url,
-                        $response->get_error_messages()
+                        $response->get_error_message()
                     )
                 );
             }
