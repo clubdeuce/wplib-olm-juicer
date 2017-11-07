@@ -28,12 +28,12 @@ The simplest way to use this module is to simply use the `Juicer::get_feed( $arg
 The following objects are exposed by this module:
 
 <a name="feed"></a>
-###Feed
+### Feed
 
 The feed object contains all information available about the feed.
 
-####Properties
+#### Properties
 There are no publicly accessible properties.
 
-####Methods
+#### Methods
 All of the properties exposed by the [Juicer API](https://juicer.io/api#feed) can be accessed using the corresponding method. For example, to get the `last_synced` value you may simply call `$feed->last_synced();`. 

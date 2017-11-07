@@ -118,9 +118,12 @@ class Feed_Model extends \WPLib_Model_Base {
      */
     function sources() {
 
-        $sources = array();
-
         do {
+
+        	if ( ! empty( $this->_sources ) ) {
+        		$sources = $this->_sources;
+        		break;
+	        }
 
             foreach( $this->_response()->sources as $source ) {
                 $this->_sources[] = new Source( array( 'source_object' => $source ) );
