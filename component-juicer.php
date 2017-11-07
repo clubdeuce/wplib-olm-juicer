@@ -72,20 +72,11 @@ class Juicer extends \WPLib_Module_Base {
 
         $params = array();
 
-        do {
-            if ( ! is_array( $args ) ) {
-                break;
-            }
+	    $args = wp_parse_args( $args );
 
-            if ( empty( $args ) ) {
-                break;
-            }
-
-            foreach ( array_filter( $args ) as $key => $val ) {
-                $params[] = sprintf( '%1$s=%2$s', $key, $val );
-            }
-
-        } while ( false );
+        foreach ( array_filter( $args ) as $key => $val ) {
+            $params[] = sprintf( '%1$s=%2$s', $key, $val );
+        }
 
         return $params;
 
