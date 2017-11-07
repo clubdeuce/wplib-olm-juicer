@@ -1,6 +1,7 @@
 # WPLib Juicer Module
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/clubdeuce/wplib-olm-juicer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/clubdeuce/wplib-olm-juicer/?branch=master)
 
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/clubdeuce/wplib-olm-juicer.svg?columns=all)](https://waffle.io/clubdeuce/wplib-olm-juicer)
 
 This is a [WPLib](https://github.com/wplib/wplib) module for [Juicer](https://juicer.io), a social media aggregation service.
 
