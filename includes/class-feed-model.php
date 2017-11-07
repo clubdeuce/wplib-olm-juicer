@@ -95,12 +95,10 @@ class Feed_Model extends \WPLib_Model_Base {
         $posts = array();
 
         do {
-            if ( ! $this->has_feed() ) {
-                break;
-            }
 
-            if ( ! empty( $this->_posts ) ) {
-                $posts = $this->_posts;
+            $response = $this->_response();
+
+            if ( ! isset( $response->posts->items ) ) {
                 break;
             }
 
@@ -123,19 +121,8 @@ class Feed_Model extends \WPLib_Model_Base {
         $sources = array();
 
         do {
-            if ( ! $this->has_feed() ) {
-                break;
-            }
 
-            if ( ! empty( $this->_sources ) ) {
-                break;
-            }
-
-            if ( empty( $this->_response() ) ) {
-                break;
-            }
-
-            foreach( $this->_response->sources as $source ) {
+            foreach( $this->_response()->sources as $source ) {
                 $this->_sources[] = new Source( array( 'source_object' => $source ) );
             }
 
