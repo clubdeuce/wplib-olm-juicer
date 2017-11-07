@@ -31,7 +31,7 @@ class Post_View extends \WPLib_View_Base {
                 break;
             }
 
-            $image = self::_resize_image( $this->model()->image(), $maxw, $maxh, $crop );
+            $image = $this->_resize_image( $this->model()->image(), $maxw, $maxh, $crop );
 
             $url = str_replace( WP_CONTENT_DIR, WP_CONTENT_URL, $image );
 
@@ -57,14 +57,13 @@ class Post_View extends \WPLib_View_Base {
     }
 
 	/**
-	 * @param  string $url
-	 * @param  null   $width
-	 * @param  null   $height
-	 * @return string the file path
+	 * @param  string   $url
+	 * @param  int|null $width
+	 * @param  int|null $height
+	 * @param  bool     $crop
+	 * @return string   the file path
 	 */
     private function _resize_image( $url, $width = null, $height = null, $crop = false ) {
-
-    	$path = '';
 
 	    // generate a unique filename for this image with the specified dimensions
 	    $fileargs = array(
@@ -76,9 +75,9 @@ class Post_View extends \WPLib_View_Base {
 
 	    $filename = md5( implode( ',', $fileargs ) );
 
-	    $path = WP_CONTENT_DIR . '/uploads/juicer/cache/' . $filename;
-
 	    do {
+		    $path = WP_CONTENT_DIR . '/uploads/juicer/cache/' . $filename;
+
 		    // get the file extension
 		    $extension = '';
 		    if ( preg_match( '#^http[s]{0,1}://.*?\.([a-zA-Z0-9]{3,4})$#', $url, $matches ) ) {
@@ -91,7 +90,7 @@ class Post_View extends \WPLib_View_Base {
 			    break;
 		    }
 
-		    $tmpfile = self::_download_image( $url );
+		    $tmpfile = $this->_download_image( $url );
 
 		    // Get an image editor object
 		    $editor = wp_get_image_editor( $tmpfile );
