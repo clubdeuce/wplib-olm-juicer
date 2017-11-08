@@ -23,7 +23,7 @@ class Juicer extends \WPLib_Module_Base {
      * @param  array $args
      * @return Feed
      */
-    static function get_feed( $args = array(), $scheme = 'http' ) {
+    static function get_feed( $args = array(), $scheme = 'https' ) {
 
         $feed = null;
         $args = wp_parse_args( $args, array(
