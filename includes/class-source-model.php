@@ -20,6 +20,21 @@ class Source_Model extends \WPLib_Model_Base {
      */
     protected $_source_object;
 
+	/**
+	 * @return bool
+	 */
+	function has_source() {
+
+		$has = false;
+
+		if ( isset( $this->_source_object ) ) {
+			$has = true;
+		}
+
+		return $has;
+
+	}
+
     /**
      * @param  string $method_name
      * @param  array $args
@@ -27,17 +42,11 @@ class Source_Model extends \WPLib_Model_Base {
      */
     function __call( $method_name, $args = array() ) {
 
-        do {
+        $value = null;
 
-            $maybe = $this->_source_object()->{$method_name};
-
-            if ( isset( $maybe ) ) {
-                $value = $maybe;
-                break;
-            }
-
-            $value = null;
-        } while ( false );
+        if ( isset( $this->_source_object()->{$method_name} ) ) {
+            $value = $this->_source_object()->{$method_name};
+        }
 
         return $value;
 
