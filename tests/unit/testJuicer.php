@@ -61,6 +61,9 @@ class testJuicer extends TestCase {
 
 	}
 
+	/**
+	 * @covers ::get_feed
+	 */
 	public function testGetFeed() {
 
 		$mock = Mockery::mock('\Clubdeuce\WPLib\Components\Juicer\HTTP');
