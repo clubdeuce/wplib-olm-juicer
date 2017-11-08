@@ -27,4 +27,4 @@ script: ./vendor/bin/phpunit -c ./tests/phpunit.xml.dist
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --repository=${TRAVIS_REPO_SLUG} --revision=${TRAVIS_COMMIT} --format=php-clover reports/coverage.xml
+  - php ocular.phar code-coverage:upload --format=php-clover reports/coverage.xml

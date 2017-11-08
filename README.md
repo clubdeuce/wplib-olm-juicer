@@ -1,5 +1,6 @@
 # WPLib Juicer Module
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/clubdeuce/wplib-olm-juicer/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/clubdeuce/wplib-olm-juicer/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/clubdeuce/wplib-olm-juicer/badges/coverage.png?b=develop)](https://scrutinizer-ci.com/g/clubdeuce/wplib-olm-juicer/?branch=develop)
 
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/clubdeuce/wplib-olm-juicer.svg?columns=all)](https://waffle.io/clubdeuce/wplib-olm-juicer)
 
