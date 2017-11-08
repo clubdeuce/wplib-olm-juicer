@@ -36,7 +36,7 @@ class testJuicer extends TestCase {
 			$this->reflectionMethodInvokeArgs(
 				'\Clubdeuce\WPLib\Components\Juicer',
 				'_make_request',
-				'https://juicer.io/api/feeds/asdf'
+				'http://www.juicer.io/api/feeds/asdf'
 			)
 		);
 
@@ -65,7 +65,7 @@ class testJuicer extends TestCase {
 			$this->reflectionMethodInvokeArgs(
 				'\Clubdeuce\WPLib\Components\Juicer',
 				'_make_request',
-				'https://foo.bar'
+				'http://foo.bar'
 			)
 		);
 
@@ -81,7 +81,7 @@ class testJuicer extends TestCase {
 			$this->reflectionMethodInvokeArgs(
 				'\Clubdeuce\WPLib\Components\Juicer',
 				'_make_request',
-				'https://juicer.io/api/asdfasdfsadf'
+				'http://www.juicer.io/api/asdfasdfsadf'
 			)
 		);
 
