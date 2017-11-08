@@ -21,7 +21,7 @@ class testJuicer extends TestCase {
 
 		$this->assertInstanceOf(
 			'\Clubdeuce\WPLib\Components\Juicer\Feed',
-			Juicer::get_feed(array('feed' => 'asdf'))
+			Juicer::get_feed(array('feed' => 'mytestfeed-362c6099-dcfa-4214-a907-1a49d65f3012'))
 		);
 
 	}
@@ -36,7 +36,7 @@ class testJuicer extends TestCase {
 			$this->reflectionMethodInvokeArgs(
 				'\Clubdeuce\WPLib\Components\Juicer',
 				'_make_request',
-				'http://www.juicer.io/api/feeds/asdf'
+				'https://www.juicer.io/api/feeds/mytestfeed-362c6099-dcfa-4214-a907-1a49d65f3012'
 			)
 		);
 
@@ -65,7 +65,7 @@ class testJuicer extends TestCase {
 			$this->reflectionMethodInvokeArgs(
 				'\Clubdeuce\WPLib\Components\Juicer',
 				'_make_request',
-				'http://foo.bar'
+				'https://foo.bar'
 			)
 		);
 
@@ -81,7 +81,7 @@ class testJuicer extends TestCase {
 			$this->reflectionMethodInvokeArgs(
 				'\Clubdeuce\WPLib\Components\Juicer',
 				'_make_request',
-				'http://www.juicer.io/api/asdfasdfsadf'
+				'https://www.juicer.io/api/asdfasdfsadf'
 			)
 		);
 
