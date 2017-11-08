@@ -1,7 +1,3 @@
-build:
-  environment:
-    php:
-      version: 7.1
-  tests:
-    override:
-      - tests/run_tests.sh
+# .scrutinizer.yml
+tools:
+  external_code_coverage: true
