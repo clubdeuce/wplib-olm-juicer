@@ -52,7 +52,8 @@ class testJuicer extends TestCase {
 	public function testGetFeedWithError() {
 
 		$mock = Mockery::mock('\Clubdeuce\WPLib\Components\Juicer\HTTP');
-		$mock->shouldReceive('fetch')->andReturn(new \WP_Error());
+		$mock->/** @scrutinizer ignore-call */
+			shouldReceive('fetch')->andReturn(new \WP_Error());
 
 		$this->assertInstanceOf(
 			'\Clubdeuce\WPLib\Components\Juicer\Feed',
@@ -67,7 +68,8 @@ class testJuicer extends TestCase {
 	public function testGetFeed() {
 
 		$mock = Mockery::mock('\Clubdeuce\WPLib\Components\Juicer\HTTP');
-		$mock->shouldReceive('fetch')->andReturn($this->_get_sample_response());
+		$mock->/** @scrutinizer ignore-call */
+			shouldReceive('fetch')->andReturn($this->_get_sample_response());
 
 		$this->assertInstanceOf(
 			'\Clubdeuce\WPLib\Components\Juicer\Feed',
