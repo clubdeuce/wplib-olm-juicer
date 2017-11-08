@@ -28,7 +28,6 @@ The simplest way to use this module is to simply use the `Juicer::get_feed( $arg
 ## Objects
 The following objects are exposed by this module:
 
-<a name="feed"></a>
 ### Feed
 
 The feed object contains all information available about the feed.

@@ -26,6 +26,7 @@ require dirname( __DIR__ ) . '/component-juicer.php';
 require dirname( __DIR__ ) . '/includes/class-feed.php';
 require dirname( __DIR__ ) . '/includes/class-feed-model.php';
 require dirname( __DIR__ ) . '/includes/class-feed-view.php';
+require dirname( __DIR__ ) . '/includes/class-http.php';
 require dirname( __DIR__ ) . '/includes/class-post.php';
 require dirname( __DIR__ ) . '/includes/class-post-model.php';
 require dirname( __DIR__ ) . '/includes/class-post-view.php';

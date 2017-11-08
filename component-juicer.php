@@ -3,6 +3,7 @@
 namespace Clubdeuce\WPLib\Components;
 
 use Clubdeuce\WPLib\Components\Juicer\Feed;
+use Clubdeuce\WPLib\Components\Juicer\HTTP;
 
 /**
  * Class Juicer
@@ -20,49 +21,48 @@ class Juicer extends \WPLib_Module_Base {
     protected static $_base_url = 'www.juicer.io/api';
 
     /**
-     * @param  array $args
+     * @param  array  $args
+     * @param  string $scheme
      * @return Feed
      */
     static function get_feed( $args = array(), $scheme = 'https' ) {
 
-        $feed = null;
         $args = wp_parse_args( $args, array(
-            'feed'   => null,
-            'per'    => '100',
-            'page'   => '1',
-            'filter' => '',
+            'feed'        => null,
+            'per'         => '100',
+            'page'        => '1',
+            'filter'      => '',
             'starting_at' => '',
             'ending_at'   => '',
+	        'transport'   => new HTTP()
         ) );
 
-        do {
-        	$feed = $args['feed'];
-	        unset( $args['feed'] );
+	    /**
+	     * @var HTTP $http
+	     */
+	    $http     = $args['transport'];
+	    $feedname = $args['feed'];
 
-            $api_url = sprintf(
-            	'%1$s://%2$s/feeds/%3$s?%4$s',
-                $scheme,
-	            self::$_base_url,
-	            $feed,
-	            self::_url_params( $args )
-            );
+	    unset( $args['transport'] );
+	    unset( $args['feed'] );
 
-            $response = self::_make_request( $api_url );
+        $api_url = sprintf( '%1$s://%2$s/feeds/%3$s?%4$s', $scheme, self::$_base_url, $feedname, self::_url_params( $args ) );
 
-            if ( $response instanceof \WP_Error ) {
-                trigger_error( sprintf(
-                    'Juicer error requesting %1$s: %3$s %2$s',
-                    $api_url,
-                    $response->get_error_message(),
-                    $response->get_error_code()
-                ), E_USER_WARNING );
-                $response = array();
-            }
+        $response = $http->fetch( $api_url );
 
-            $class = self::INSTANCE_CLASS;
-            $feed = new $class( array( 'response' => $response ) );
+        if ( $response instanceof \WP_Error ) {
+            trigger_error( sprintf(
+                'Juicer error requesting %1$s: %3$s %2$s',
+                $api_url,
+                $response->get_error_message(),
+                $response->get_error_code()
+            ), E_USER_WARNING );
+            $response = array();
+        }
 
-        } while ( false );
+        $class = self::INSTANCE_CLASS;
+        $feed = new $class( array( 'response' => $response ) );
+
 
         return $feed;
 
@@ -86,48 +86,5 @@ class Juicer extends \WPLib_Module_Base {
 
     }
 
-    /**
-     * @param  $url
-     * @return \stdClass|\WP_Error
-     */
-    protected static function _make_request( $url ) {
-
-        do {
-            if ( ! wp_http_validate_url( $url ) ) {
-                $response = new \WP_Error( '100', __( 'Invalid URL', 'cdjuicer' ), array( 'url' => $url ) );
-                break;
-            }
-
-            if ( $data = wp_cache_get( $cache_key = md5( $url ) ) ) {
-                $response = $data;
-                break;
-            }
-
-            $fetch = wp_remote_get( $url );
-
-            if ( $fetch instanceof \WP_Error ) {
-                $response = $fetch;
-                break;
-            }
-
-            if ( ! ( 200 === wp_remote_retrieve_response_code( $fetch ) ) ) {
-                $response = new \WP_Error(
-                    wp_remote_retrieve_response_code( $fetch ),
-                    __( 'Unsuccessful request', 'cdjuicer' ),
-                    wp_remote_retrieve_body( $fetch )
-                );
-                break;
-            }
-
-            $response = wp_remote_retrieve_body( $fetch );
-
-            wp_cache_set( $cache_key, $response, 'juicer', 600 );
-
-            $response = json_decode( $response );
-        } while ( false );
-
-        return $response;
-
-    }
 
 }

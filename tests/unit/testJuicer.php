@@ -2,13 +2,17 @@
 
 namespace Clubdeuce\WPLib\Components\Juicer\Tests;
 
+use Mockery;
 use Clubdeuce\WPLib\Components\Juicer;
+
 
 /**
  * Class testJuicer
  * @package Clubdeuce\WPLib\Components\Juicer\Tests
  *
  * @coversDefaultClass \Clubdeuce\WPLib\Components\Juicer
+ * @group Juicer
+ * @group Unit
  */
 class testJuicer extends TestCase {
 
@@ -42,4 +46,30 @@ class testJuicer extends TestCase {
 
 	}
 
+	/**
+	 * @covers ::get_feed
+	 */
+	public function testGetFeedWithError() {
+
+		$mock = Mockery::mock('\Clubdeuce\WPLib\Components\Juicer\HTTP');
+		$mock->shouldReceive('fetch')->andReturn(new \WP_Error());
+
+		$this->assertInstanceOf(
+			'\Clubdeuce\WPLib\Components\Juicer\Feed',
+			@Juicer::get_feed(array('feed' => 'asdf', 'transport' => $mock), 'http')
+		);
+
+	}
+
+	public function testGetFeed() {
+
+		$mock = Mockery::mock('\Clubdeuce\WPLib\Components\Juicer\HTTP');
+		$mock->shouldReceive('fetch')->andReturn($this->_get_sample_response());
+
+		$this->assertInstanceOf(
+			'\Clubdeuce\WPLib\Components\Juicer\Feed',
+			Juicer::get_feed(array('feed' => 'asdf', 'transport' => $mock), 'http')
+		);
+
+	}
 }
