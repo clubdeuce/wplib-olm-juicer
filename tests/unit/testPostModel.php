@@ -64,7 +64,7 @@ class testPostModel extends TestCase {
 
 		$model = new Post_Model();
 
-		$this->assertNull($model->foo());
+		$this->assertNull($model->id());
 
 	}
 
