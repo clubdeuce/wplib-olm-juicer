@@ -17,13 +17,13 @@ class Juicer extends \WPLib_Module_Base {
      *
      * @var string
      */
-    protected static $_base_url = 'https://www.juicer.io/api';
+    protected static $_base_url = 'www.juicer.io/api';
 
     /**
      * @param  array $args
      * @return Feed
      */
-    static function get_feed( $args = array() ) {
+    static function get_feed( $args = array(), $scheme = 'http' ) {
 
         $feed = null;
         $args = wp_parse_args( $args, array(
@@ -38,7 +38,14 @@ class Juicer extends \WPLib_Module_Base {
         do {
         	$feed = $args['feed'];
 	        unset( $args['feed'] );
-            $api_url = sprintf( '%1$s/feeds/%2$s?%3$s', self::$_base_url, $feed, self::_url_params( $args ) );
+
+            $api_url = sprintf(
+            	'%1$s://%2$s/feeds/%3$s?%4$s',
+                $scheme,
+	            self::$_base_url,
+	            $feed,
+	            self::_url_params( $args )
+            );
 
             $response = self::_make_request( $api_url );
 
