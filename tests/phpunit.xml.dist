@@ -21,4 +21,8 @@
             <file>../component-juicer.php</file>
         </whitelist>
     </filter>
+    <logging>
+        <log type="coverage-clover" target="reports/coverage.xml"/>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+    </logging>
 </phpunit>
