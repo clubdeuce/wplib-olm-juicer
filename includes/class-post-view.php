@@ -26,6 +26,8 @@ class Post_View extends \WPLib_View_Base {
                 break;
             }
 
+	        $url = $this->model()->image();
+
             // Do we need to resize it?
             if ( is_null( $maxh ) && is_null( $maxw ) ) {
                 break;

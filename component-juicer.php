@@ -41,10 +41,6 @@ class Juicer extends \WPLib_Module_Base {
 
             $response = self::_make_request( $api_url );
 
-            if ( ! is_object( $response ) ) {
-                break;
-            }
-
             if ( $response instanceof \WP_Error ) {
                 trigger_error( sprintf(
                     'Juicer error requesting %1$s: %3$s %2$s',
