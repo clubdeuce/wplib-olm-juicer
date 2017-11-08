@@ -120,10 +120,10 @@ class Feed_Model extends \WPLib_Model_Base {
 
         do {
 
-        	if ( ! empty( $this->_sources ) ) {
-        		$sources = $this->_sources;
-        		break;
-	        }
+            if ( ! empty( $this->_sources ) ) {
+                $sources = $this->_sources;
+                break;
+            }
 
             foreach( $this->_response()->sources as $source ) {
                 $this->_sources[] = new Source( array( 'source_object' => $source ) );
@@ -146,9 +146,9 @@ class Feed_Model extends \WPLib_Model_Base {
 
         $value = null;
 
-	    if ( isset( $this->_response()->{$method_name} ) ) {
-	    	$value = $this->_response()->{$method_name};
-	    }
+        if ( isset( $this->_response()->{$method_name} ) ) {
+            $value = $this->_response()->{$method_name};
+        }
 
         return $value;
 
