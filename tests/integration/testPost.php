@@ -6,12 +6,13 @@ use Clubdeuce\WPLib\Components\Juicer\Post;
 use Clubdeuce\WPLib\Components\Juicer\Tests\TestCase;
 
 /**
- * Class testPostView
+ * Class testPost
  * @package Clubdeuce\WPLib\Components\Juicer\Tests\Integration
  *
- * @group              Integration
+ * @group Integration
+ * @group Post
  */
-class testPostView extends TestCase {
+class testPost extends TestCase {
 
 	/**
 	 * @var Post;

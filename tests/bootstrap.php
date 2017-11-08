@@ -7,9 +7,9 @@ if (! file_exists( dirname(__DIR__) . '/build' ) ) {
 }
 
 require_once getenv( 'WP_TESTS_DIR' ) . '/tests/phpunit/includes/functions.php';
-require getenv( 'WP_TESTS_DIR' ) . '/tests/phpunit/includes/bootstrap.php';
+require_once getenv( 'WP_TESTS_DIR' ) . '/tests/phpunit/includes/bootstrap.php';
 
-require 'includes/testCase.php';
+require_once 'includes/testCase.php';
 
 require VENDOR_DIRECTORY . '/autoload.php';
 

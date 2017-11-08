@@ -42,6 +42,9 @@ class testJuicer extends TestCase {
 
 	}
 
+	/**
+	 * @covers ::_make_request
+	 */
 	public function testMakeRequestInvalidURL() {
 
 		$this->assertInstanceOf(
@@ -86,4 +89,5 @@ class testJuicer extends TestCase {
 		);
 
 	}
+
 }
