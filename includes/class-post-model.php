@@ -76,9 +76,9 @@ class Post_Model extends \WPLib_Model_Base {
 
         $source = new Source();
 
-	    if ( isset( $this->_post->source ) ) {
-		    $source = new Source( array( 'source_object' => $this->_post->source ) );
-	    }
+        if ( isset( $this->_post->source ) ) {
+            $source = new Source( array( 'source_object' => $this->_post->source ) );
+        }
 
         return $source;
 
