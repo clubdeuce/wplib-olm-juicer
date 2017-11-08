@@ -1,0 +1,4 @@
+vendor
+reports
+wp-tests
+phpunit.xml

@@ -144,17 +144,11 @@ class Feed_Model extends \WPLib_Model_Base {
      */
     function __call( $method_name, $args = array() ) {
 
-        do {
+        $value = null;
 
-            $maybe = $this->_response()->{$method_name};
-
-            if ( isset( $maybe ) ) {
-                $value = $maybe;
-                break;
-            }
-
-            $value = null;
-        } while ( false );
+	    if ( isset( $this->_response()->{$method_name} ) ) {
+	    	$value = $this->_response()->{$method_name};
+	    }
 
         return $value;
 

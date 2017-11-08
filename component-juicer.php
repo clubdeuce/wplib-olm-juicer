@@ -37,7 +37,7 @@ class Juicer extends \WPLib_Module_Base {
 
         do {
             $params  =  self::_url_params( $args );
-            $api_url = sprintf( '%1$s/feeds/%2$s?%3$s', self::$_base_url, $args['feed'], implode( '&', $params ) );
+            $api_url = sprintf( '%1$s/feeds/%2$s?%3$s', self::$_base_url, $args['feed'], $params );
 
             $response = self::_make_request( $api_url );
 
@@ -65,8 +65,8 @@ class Juicer extends \WPLib_Module_Base {
     }
 
     /**
-     * @param array $args
-     * @return array
+     * @param  array $args
+     * @return string
      */
     protected static function _url_params( $args = array() ) {
 
@@ -78,7 +78,7 @@ class Juicer extends \WPLib_Module_Base {
             $params[] = sprintf( '%1$s=%2$s', $key, $val );
         }
 
-        return $params;
+        return implode( '&', $params );
 
     }
 
