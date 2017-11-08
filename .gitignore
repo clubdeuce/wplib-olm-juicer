@@ -1,4 +1,5 @@
 vendor
 reports
+wordpress
 wp-tests
 phpunit.xml

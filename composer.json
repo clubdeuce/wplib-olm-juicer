@@ -23,6 +23,8 @@
   ],
   "require-dev": {
     "composer/installers": "dev-master",
+    "johnpbloch/wordpress-core-installer": "~0.1",
+    "johnpbloch/wordpress-core": "*",
     "phpunit/phpunit": "5.6.2",
     "mockery/mockery": "0.9.5",
     "wplib/wplib": "0.13.4"
