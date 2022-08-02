@@ -8,7 +8,7 @@
   "authors": [
     {
       "name": "Daryl Lozupone",
-      "email": "daryl@newclarity.net",
+      "email": "daryl@clubdeuce.net",
       "role" :  "DevOp and Developer"
     }
   ],
@@ -22,10 +22,10 @@
     }
   ],
   "require-dev": {
-    "composer/installers": "dev-master",
-    "johnpbloch/wordpress-core-installer": "~0.1",
+    "composer/installers": "*",
+    "johnpbloch/wordpress-core-installer": "*",
     "johnpbloch/wordpress-core": "*",
-    "phpunit/phpunit": "5.6.2",
+    "phpunit/phpunit": "~5.6.3",
     "mockery/mockery": "0.9.5",
     "wplib/wplib": "0.13.4"
   },
